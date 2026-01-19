@@ -12,7 +12,6 @@ Lighting is based on a standard 12 week grow cycle. 4 weeks veg, 8 weeks flower.
 Lighting cycle is 18/6 veg and 12/12 flower.  
 The lighting cycle is centered at noon. This means that your 18/6 lighting cycle is 0300-2100 and your 12/12 cycle is 0600-1800. This you have no control over.  
 
-
 ## Heating control
 Heating is tied into the lighting in the project.  
 This is because the temperature during the day is higher than the temperature at night.  
