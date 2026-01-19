@@ -33,3 +33,8 @@ The templates.yaml file contains information about when lights turn on/off, a co
 Without these the heating script will fail.  
 
 ## Installation
+I will setup quicklink buttons to install everything automatically.   
+
+## Setup
+Firstly set the start date of your grow.   
+Then set the temperature settings. Ensure you don't set the minimum temp above the maximum temp. The difference between min/max can be 0.1 (this is your setpoint/hysteresis)   
