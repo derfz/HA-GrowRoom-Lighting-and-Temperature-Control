@@ -1,0 +1,126 @@
+  - sensor:
+      # ───────────── Grow Week ─────────────
+      - name: "Grow Week"
+        icon: mdi:calendar-week
+        state: >
+          {% set start = states('input_datetime.grow_start_date') %}
+          {% if start not in ['unknown','unavailable',''] %}
+            {% set start_date = strptime(start.split(' ')[0], '%Y-%m-%d') %}
+            {% set days = (now().date() - start_date.date()).days %}
+            {{ (days // 7) + 1 if days >= 0 else 0 }}
+          {% else %}
+            unknown
+          {% endif %}
+
+      # ───────────── Grow Lights Countdown ─────────────
+      - name: "Grow Lights – Countdown"
+        icon: mdi:timer-outline
+        state: >
+          {% set start_date = states('input_datetime.grow_start_date') %}
+          {% set light_state = states('switch.relayboard_lights') %}
+          {% if start_date in ['unknown','unavailable',''] or light_state in ['unknown','unavailable'] %}
+            unavailable
+          {% else %}
+            {% set now_ts = as_timestamp(now()) %}
+            {# Use fixed local noon today #}
+            {% set noon = now().replace(hour=12, minute=0, second=0, microsecond=0) %}
+            {% set noon_ts = as_timestamp(noon) %}
+            {% set grow_days = (now().date() - strptime(start_date.split(' ')[0], '%Y-%m-%d').date()).days %}
+            {% set grow_week = (grow_days // 7) + 1 if grow_days >= 0 else 0 %}
+            {% set light_hours = 18 if grow_week < 5 else 12 %}
+            {% set half_window = (light_hours / 2) * 3600 %}
+            {% set lights_on_ts = noon_ts - half_window %}
+            {% set lights_off_ts = noon_ts + half_window %}
+
+            {% if light_state == 'on' %}
+              {% set remaining = max(0, lights_off_ts - now_ts) %}
+            {% else %}
+              {% if now_ts < lights_on_ts %}
+                {% set remaining = lights_on_ts - now_ts %}
+              {% else %}
+                {% set remaining = (lights_on_ts + 24*3600) - now_ts %}
+              {% endif %}
+            {% endif %}
+
+            {% set hours = (remaining // 3600) | int %}
+            {% set minutes = ((remaining % 3600) // 60) | int %}
+            {{ "%02d:%02d" | format(hours, minutes) }}
+          {% endif %}
+
+      # ───────────── Next Light ON ─────────────
+      - name: "Next Light ON"
+        unique_id: grow_lights_on
+        icon: mdi:lightbulb-on-outline
+        device_class: timestamp
+        state: >
+            {% set start = states('input_datetime.grow_start_date') %}
+            {% if start in ['unknown','unavailable',''] %}
+                unavailable
+            {% else %}
+            {% set now_ts = as_timestamp(now()) %}
+            {% set prev_noon = state_attr('sun.sun','previous_noon') %}
+            {% set next_noon = state_attr('sun.sun','next_noon') %}
+
+            {% if prev_noon is not none and next_noon is not none %}
+            {% set noon_ts = as_timestamp(prev_noon if now_ts < as_timestamp(next_noon) else next_noon) %}
+            {% else %}
+            {% set noon_ts = as_timestamp(today_at("12:00")) %}
+            {% endif %}
+
+            {% set days = (now().date() - strptime(start.split(' ')[0], '%Y-%m-%d').date()).days %}
+            {% set week = (days // 7) + 1 if days >= 0 else 0 %}
+            {% set hours = 18 if week < 5 else 12 %}
+            {% set on_ts = noon_ts - (hours / 2 * 3600) %}
+
+            {{ (on_ts if now_ts < on_ts else on_ts + 86400) | timestamp_local }}
+            {% endif %}
+
+      # ───────────── Next Light OFF ─────────────
+      - name: "Next Light OFF"
+        unique_id: grow_lights_off
+        icon: mdi:lightbulb-off-outline
+        device_class: timestamp
+        state: >
+            {% set start = states('input_datetime.grow_start_date') %}
+            {% if start in ['unknown','unavailable',''] %}
+                unavailable
+            {% else %}
+            {% set now_ts = as_timestamp(now()) %}
+            {% set prev_noon = state_attr('sun.sun','previous_noon') %}
+            {% set next_noon = state_attr('sun.sun','next_noon') %}
+
+            {% if prev_noon is not none and next_noon is not none %}
+            {% set noon_ts = as_timestamp(prev_noon if now_ts < as_timestamp(next_noon) else next_noon) %}
+            {% else %}
+            {% set noon_ts = as_timestamp(today_at("12:00")) %}
+            {% endif %}
+
+            {% set days = (now().date() - strptime(start.split(' ')[0], '%Y-%m-%d').date()).days %}
+            {% set week = (days // 7) + 1 if days >= 0 else 0 %}
+            {% set hours = 18 if week < 5 else 12 %}
+            {% set off_ts = noon_ts + (hours / 2 * 3600) %}
+
+            {{ (off_ts if now_ts < off_ts else off_ts + 86400) | timestamp_local }}
+            {% endif %}
+
+      # ───────────── Display: Next Light ON ─────────────
+      - name: "Next Light ON Time"
+        icon: mdi:clock-outline
+        state: >
+            {% set ts = states('sensor.next_light_on') | as_timestamp(none) %}
+            {% if ts is none %}
+                unknown
+            {% else %}
+            {{ ts | timestamp_custom('%H:%M') }}
+            {% endif %}
+
+      # ───────────── Display: Next Light OFF ─────────────
+      - name: "Next Light OFF Time"
+        icon: mdi:clock-outline
+        state: >
+            {% set ts = states('sensor.next_light_off') | as_timestamp(none) %}
+            {% if ts is none %}
+                unknown
+            {% else %}
+            {{ ts | timestamp_custom('%H:%M') }}
+            {% endif %}
