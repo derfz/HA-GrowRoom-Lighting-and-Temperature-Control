@@ -37,7 +37,7 @@ Daytime and Nightime (lights on/off) temp can be inmdividually set so you can ch
 
 ## Templates
 The templates.yaml whilst not essential contains information about when lights turn on/off, a countdown timer to the next cycle, current grow week and several others that will assist in debugging the system if it doesn't work as expected.  
-Don't forget to change the sensors and switches, this has to be done manually.  
+Don't forget to change your_lights_switch, this has to be done manually.  
 
 ## Installation
 I will setup quicklink buttons to install everything automatically.   
