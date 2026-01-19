@@ -83,3 +83,4 @@ action:
           - service: switch.turn_off
             target:
               entity_id: !input grow_light_switch
+
