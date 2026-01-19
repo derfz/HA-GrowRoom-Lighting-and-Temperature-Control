@@ -39,7 +39,7 @@ Daytime and Nightime (lights on/off) temp can be individually set so you can cho
 ###### Absolute lowest temp your grow groom will get to before the heater is forced on
 - input_number.grow_absolute_minimum_temp
 
-## Templates
+## templates.yaml
 The templates.yaml whilst not essential contains information about when lights turn on/off, a countdown timer to the next cycle, current grow week and several others that will assist in debugging the system if it doesn't work as expected.  
 Don't forget to change your_lights_switch, this has to be done manually.  
 
