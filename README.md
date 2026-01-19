@@ -36,8 +36,8 @@ Daytime and Nightime (lights on/off) temp can be inmdividually set so you can ch
 - input_number.grow_absolute_minimum_temp
 
 ## Templates
-The templates.yaml file contains information about when lights turn on/off, a countdown timer to the next cycle, current grow week and several others that aid in the integration between both lighting and heating.   
-Without these the heating script will fail.  
+The templates.yaml whilst not essential contains information about when lights turn on/off, a countdown timer to the next cycle, current grow week and several others that will assist in debugging the system if it doesn't work as expected.  
+Don't forget to change the sensors and switches, this has to be done manually.  
 
 ## Installation
 I will setup quicklink buttons to install everything automatically.   
