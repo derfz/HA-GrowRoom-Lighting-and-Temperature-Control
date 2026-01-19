@@ -20,19 +20,19 @@ Setpoint/Hysteresis is set manually. Sanity checking is included to ensure you d
 Daytime and Nightime (lights on/off) temp can be inmdividually set so you can choose the difference. I've set mine to 2 degrees.  
 
 ## Helpers
-### Grow Start Date
+###### Grow Start Date
 - input_datetime.grow_start_date
-### Daytime high temp
+###### Daytime high temp
 - input_number.grow_day_temperature_high
-### Daytime low temp
+###### Daytime low temp
 - input_number.grow_day_temperature_low
-### Nighttime high temp
+###### Nighttime high temp
 - input_number.grow_night_temperature_high
-### Nighttime low temp
+###### Nighttime low temp
 - input_number.grow_night_temperature_low
-### Absolute m,aximum temp your grow rome will get to before the heater is forced off
+###### Absolute maximum temp your grow rome will get to before the heater is forced off
 - input_number.grow_absolute_max_temp
-### Absolutely lowest temp your grow groom will get to before the heater is forced on
+###### Absolute lowest temp your grow groom will get to before the heater is forced on
 - input_number.grow_absolute_minimum_temp
 
 ## Templates
