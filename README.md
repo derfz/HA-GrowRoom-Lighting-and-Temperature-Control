@@ -1,8 +1,11 @@
 # HA-GrowRoom-Lighting-and-Temperature-Control
 
 ## Premis of project
-The idea behind this project was to start to fully automate all features of mymgrow room.  
+The idea behind this project was to start to fully automate all features of my grow room.  
 As I only have lights and heat to control as yet, that is where I have started.  
+
+## caveat
+As I am NOT a programmer all code was written with the help of ChatGPT.  
 
 ## Lighting Control
 Lighting is based on a standard 12 week grow cycle. 4 weeks veg, 8 weeks flower.  
