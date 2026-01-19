@@ -52,5 +52,6 @@ Install the heating blueprint. It will want to know all 6 temp related helpers a
 ## Debugging
 If your system doesn't work as expected, and some of the sensors display as unknown or unavailable check these first.  
 Did you select the correct devices/entities during the setup of this project?  
+Did you change your_lights_switch in the templates.yaml?   
 Ensure Sun is installed.  
 Under Developer Tools, States, check sensor.next_light_off this should show something like this 2026-01-20T05:00:00+00:00 and NOT 18:00   
