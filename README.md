@@ -43,14 +43,11 @@ Daytime and Nightime (lights on/off) temp can be individually set so you can cho
 The templates.yaml whilst not essential contains information about when lights turn on/off, a countdown timer to the next cycle, current grow week and several others that will assist in debugging the system if it doesn't work as expected.  
 Don't forget to change your_lights_switch, this has to be done manually.  
 
-## Installation
-I will setup quicklink buttons to install everything automatically.   
-
 ## Setup
 Set the start date of your grow in the helper.   
-Install the lighting blueprint. There is nothing to setup here. It only requires the start date.  
+Install the lighting blueprint. There is nothing to setup here. It only requires the start date and to know your light switch.   
 Then set the temperature settings in the helpers. Ensure you don't set the minimum temp above the maximum temp. The difference between min/max can be 0.1 (this is your setpoint/hysteresis)   
-Install the heating blueprint.
+Install the heating blueprint. It will want to know all 6 temp related helpers and your heater switch.   
 
 ## Debugging
 If your system doesn't work as expected, and some of the sensors display as unknown or unavailable check these first.  
