@@ -17,15 +17,22 @@ Heating is tied into the lighting in the project.
 This is because the temperature during the day is higher than the temperature at night.  
 This closely mimics what plants actually experience naturally.  
 Setpoint/Hysteresis is set manually. Sanity checking is included to ensure you don't set any minimum temp above the maximum temp. This will result in the heater switch being dissabled.   
-daytime and nightime (lights on/off) temp can be inmdividually set so you can choose the difference. I've set mine to 2 degrees.  
+Daytime and Nightime (lights on/off) temp can be inmdividually set so you can choose the difference. I've set mine to 2 degrees.  
 
 ## Helpers
+### Grow Start Date
 - input_datetime.grow_start_date
+### Daytime high temp
 - input_number.grow_day_temperature_high
+### Daytime low temp
 - input_number.grow_day_temperature_low
+### Nighttime high temp
 - input_number.grow_night_temperature_high
+### Nighttime low temp
 - input_number.grow_night_temperature_low
+### Absolute m,aximum temp your grow rome will get to before the heater is forced off
 - input_number.grow_absolute_max_temp
+### Absolutely lowest temp your grow groom will get to before the heater is forced on
 - input_number.grow_absolute_minimum_temp
 
 ## Templates
