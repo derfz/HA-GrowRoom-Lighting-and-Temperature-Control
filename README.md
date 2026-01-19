@@ -20,9 +20,16 @@ Setpoint/Hysteresis is set manually. Sanity checking is included to ensure you d
 daytime and nightime (lights on/off) temp can be inmdividually set so you can choose the difference. I've set mine to 2 degrees.  
 
 ## Helpers
-
+- input_datetime.grow_start_date
+- input_number.grow_day_temperature_high
+- input_number.grow_day_temperature_low
+- input_number.grow_night_temperature_high
+- input_number.grow_night_temperature_low
+- input_number.grow_absolute_max_temp
+- input_number.grow_absolute_minimum_temp
 
 ## Templates
-
+The templates.yaml file contains information about when lights turn on/off, a countdown timer to the next cycle, current grow week and several others that aid in the integration between both lighting and heating.   
+Without these the heating script will fail.  
 
 ## Installation
