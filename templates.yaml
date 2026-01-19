@@ -17,7 +17,7 @@
         icon: mdi:timer-outline
         state: >
           {% set start_date = states('input_datetime.grow_start_date') %}
-          {% set light_state = states('switch.relayboard_lights') %}
+          {% set light_state = states('switch.your_lights_switch') %} # Change your_lights_switch
           {% if start_date in ['unknown','unavailable',''] or light_state in ['unknown','unavailable'] %}
             unavailable
           {% else %}
